@@ -1,19 +1,24 @@
 import pygame
+from character import Apple
 pygame.init()
  
 FPS = 60
 WIN_WIDTH = 1500
-WIN_HEIGHT = 900
+WIN_HEIGHT = 800
 WINDOW = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 
 pygame.display.set_caption("Fight The Fly")
+
+apple = Apple("assets/Apple_back.png", 100, 100)
 
 class colors:
     white = (255, 255, 255)
     black = (0, 0, 0)
 
 def draw_window():
-    pass
+    WINDOW.fill(colors.white)
+    apple.draw_apple(WINDOW)
+    pygame.display.update()
 
 def main():
     clock = pygame.time.Clock()
@@ -25,7 +30,7 @@ def main():
                 run = False
                 pygame.quit()
 
-    draw_window()
+        draw_window()
 
 if __name__ == "__main__":
     main()
