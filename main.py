@@ -10,7 +10,7 @@ WINDOW = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 pygame.display.set_caption("Fight The Fly")
 
 # creates an Object from the "Apple" Class 
-apple = Apple("assets/Apple_back.png", 100, 100)
+apple = Apple("assets/apple_back_cropped.png", 100, 100)
 
 # sets path and scales the BG-image to the WINDOW size
 BG_IMAGE = pygame.transform.smoothscale(pygame.image.load("assets/BG_Test.png"), (WIN_WIDTH, WIN_HEIGHT))
