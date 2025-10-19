@@ -1,35 +1,44 @@
+"""This file is for the playable character."""
 import pygame
 
-class Apple: 
-    def __init__(apple, image, x, y, height = 100, width = 100):
-        apple.width = height
-        apple.height = width
+
+class Apple:
+    """Represents the playable character."""
+
+    def __init__(self, image, x, y, height=100, width=100):
+        """Construct an Object of Apple."""
+        self.width = height
+        self.height = width
 
         unscaled_image = pygame.image.load(image)
-        apple.image = pygame.transform.smoothscale(unscaled_image, (apple.width, apple.height))
-        apple.x = x
-        apple.y = y
-        apple.movespeed = 5
+        self.image = pygame.transform.smoothscale(
+            unscaled_image, (self.width, self.height))
+        self.x = x
+        self.y = y
+        self.movespeed = 5
 
-    def draw_apple(apple, window):
-        window.blit(apple.image, (apple.x, apple.y)) # draws the char onto the WINDOW surface
+    def draw_apple(self, window):
+        """Draw the char onto the WINDOW surface."""
+        window.blit(self.image, (self.x, self.y))
 
-    def handle_apple_movement(apple, keys, width, height):
-
+    def handle_apple_movement(self, keys, width, height):
+        """Handle the movement of the character."""
         # move up + restriction
-        if apple.y - apple.movespeed > 0 and (keys[pygame.K_UP] or keys[pygame.K_w]):
-            apple.y -= apple.movespeed
+        if (self.y - self.movespeed > 0
+                and (keys[pygame.K_UP] or keys[pygame.K_w])):
+            self.y -= self.movespeed
 
         # move down + restriction
-        if apple.y + apple.movespeed + apple.height < height and (keys[pygame.K_DOWN] or keys[pygame.K_s]):
-            apple.y += apple.movespeed
+        if (self.y + self.movespeed + self.height < height
+                and (keys[pygame.K_DOWN] or keys[pygame.K_s])):
+            self.y += self.movespeed
 
         # move left + restriction
-        if apple.x - apple.movespeed > 0 and (keys[pygame.K_LEFT] or keys[pygame.K_a]):
-            apple.x -= apple.movespeed
+        if (self.x - self.movespeed > 0
+                and (keys[pygame.K_LEFT] or keys[pygame.K_a])):
+            self.x -= self.movespeed
 
         # move right + restriction
-        if apple.x + apple.movespeed + apple.width < width and (keys[pygame.K_RIGHT] or keys[pygame.K_d]):
-            apple.x += apple.movespeed
-
-        
+        if (self.x + self.movespeed + self.width < width
+                and (keys[pygame.K_RIGHT] or keys[pygame.K_d])):
+            self.x += self.movespeed
