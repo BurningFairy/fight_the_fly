@@ -16,10 +16,13 @@ class Apple:
         self.x = x
         self.y = y
         self.movespeed = 5
+        self.hitbox = (self.x, self.y, self.width, self.height)
 
     def draw_apple(self, window):
         """Draw the char onto the WINDOW surface."""
         window.blit(self.image, (self.x, self.y))
+        self.hitbox = (self.x, self.y, self.width, self.height)
+        pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def handle_apple_movement(self, keys, width, height):
         """Handle the movement of the character."""

@@ -1,16 +1,19 @@
 """This file includes the main function."""
 import pygame
 from character import Apple
+from enemies import Fly
 import settings
 
 # creates an Object from the "Apple" Class
-apple = Apple("assets/char_apple/Apple_back.png", 100, 100)
+apple = Apple("assets/char_apple/Apple_back_cropped.png", 100, 100)
+enemy = Fly("assets/char_fly/Fly.png", 100, 100)
 
 
 def draw_window():
     """Draw the charcter and the background on the screen."""
     settings.WINDOW.blit(settings.BG_IMAGE, (0, 0))  # inserts the BG_Image to the WINDOW
     apple.draw_apple(settings.WINDOW)  # calls the draw function from character.py
+    enemy.draw_enemy(settings.WINDOW)
     pygame.display.update()
 
 
