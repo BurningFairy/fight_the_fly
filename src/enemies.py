@@ -20,7 +20,7 @@ class Fly:
     def draw_enemy(self, window):
         """Draw the enemy onto the WINDOW surface."""
         window.blit(self.image, (self.x, self.y))
-        self.hitbox = (self.x, self.y, self.width, self.height)
+        self.hitbox = (self.x + 27, self.y + 37, self.width - 50, self.height - 65)
         pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def handle_enemy_movement(self, width, height, player_pos):
