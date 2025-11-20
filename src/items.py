@@ -16,6 +16,7 @@ class Weapon:
 
      def draw(self, screen):
           pygame.draw.rect(screen, (255, 255, 0), self.rect) 
+          
 class Flyswater(Weapon):
      """Class for the functions of Flyswater ."""
      pass
