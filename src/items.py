@@ -1,15 +1,21 @@
 """This file is for Items ."""
 import pygame
 
-class Items:
-     """Parent Class for items."""
-     # 1 def__init__(self,image,window,positon )
-     # 2 displaymethod for drawing item in slot
 
-class Weapon(Items):
+
+     #  function displayfor drawing item in slot
+
+class Weapon:
      """Class for the basic functions for weapons."""
-     pass
+     def __init__(self, x, y):
+        self.rect = pygame.Rect(x, y, 10, 4)
+        self.speed = 8
+     
+     def update(self):
+        self.rect.x += self.speed
 
+     def draw(self, screen):
+          pygame.draw.rect(screen, (255, 255, 0), self.rect) 
 class Flyswater(Weapon):
      """Class for the functions of Flyswater ."""
      pass
@@ -22,6 +28,6 @@ class Bugspray(Weapon):
      """Class for the basic functions for Accessories ."""
      pass
 
-class Accessories(Items):
+class Accessories():
      """Class for the basic functions for Accessories ."""
      pass

@@ -45,3 +45,5 @@ class Apple:
         if (self.x + self.movespeed + self.width < width
                 and (keys[pygame.K_RIGHT] or keys[pygame.K_d])):
             self.x += self.movespeed
+
+    
