@@ -3,6 +3,7 @@ import pygame
 
 from characters.character import Apple
 from screens import gameWindow
+import screens.startMenu
 import settings
 
 # creates an Object from the "Apple" Class
@@ -16,13 +17,23 @@ def main():
     """Define the main function of the game."""
     clock = pygame.time.Clock()
     run = True
+
+    gameState = "MENU"
+
     while run:
         clock.tick(settings.FPS)
-        for event in pygame.event.get():
+        events = pygame.event.get()
+
+        for event in events:
             if event.type == pygame.QUIT:
                 run = False
-        update_game()
-        gameWindow.draw_window(apple)
+
+        if gameState == "MENU":
+            screens.startMenu.draw_startMenu()
+
+        elif gameState == "GAME":
+            update_game()
+            gameWindow.draw_window(apple)
 
 
 if __name__ == "__main__":
