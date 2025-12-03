@@ -20,7 +20,7 @@ def main():
     clock = pygame.time.Clock()
     run = True
 
-    gameState = "GAME"
+    gameState = "MENU"
 
     while run:
         clock.tick(settings.FPS)
@@ -32,6 +32,7 @@ def main():
 
         if gameState == "MENU":
             screens.startMenu.draw_startMenu()
+            gameState = screens.startMenu.logic_startMenu(events)
 
         elif gameState == "GAME":
             update_game()
