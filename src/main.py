@@ -2,12 +2,14 @@
 import pygame
 
 from characters.character import Apple
+from characters.enemies import Fly
 from screens import gameWindow
 import screens.startMenu
 import settings
 
-# creates an Object from the "Apple" Class
+# creates an Object from the "Apple" Class5
 apple = Apple("assets/char_apple/Apple_back_cropped.png", 100, 100)
+fly = Fly("assets/char_fly/Fly.png", 100, 100)
 
 def update_game():
     keys = pygame.key.get_pressed()
@@ -18,7 +20,7 @@ def main():
     clock = pygame.time.Clock()
     run = True
 
-    gameState = "MENU"
+    gameState = "GAME"
 
     while run:
         clock.tick(settings.FPS)
@@ -33,7 +35,7 @@ def main():
 
         elif gameState == "GAME":
             update_game()
-            gameWindow.draw_window(apple)
+            gameWindow.draw_window(apple, fly)
 
 
 if __name__ == "__main__":

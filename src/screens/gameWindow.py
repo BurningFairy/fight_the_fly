@@ -7,9 +7,9 @@ from characters.enemies import Fly
 import settings
 
 
-def draw_window(apple):
+def draw_window(apple, enemy):
     """Draw the charcter and the background on the screen."""
     settings.WINDOW.blit(settings.BG_IMAGE, (0, 0))  # inserts the BG_Image to the WINDOW
     apple.draw_apple(settings.WINDOW)  # calls the draw function from character.py
-    #enemy.draw_enemy(settings.WINDOW) # calls the draw function from enemies.py
+    enemy.draw_enemy(settings.WINDOW) # calls the draw function from enemies.py
     pygame.display.update()
