@@ -25,12 +25,12 @@ class Fly:
 
     def handle_enemy_movement(self, width, height, player_pos):
         """Handles the automatic movement of the enemy."""
-        """while collision is FALSE:
-        if apple.x > self.x:
-            self.x = self.x+movespeed
+        #while collision is FALSE:
+        if player_pos.x > self.x:
+            self.x = self.x+self.movespeed
         else:
-            self.x = self.x-movespeed
-        if apple.y < self.y:
-            self.y = self.y+movespeed
+            self.x = self.x-self.movespeed
+        if player_pos.y < self.y:
+            self.y = self.y+self.movespeed
         else:
-            self.y = self.y-movespeed"""
+            self.y = self.y-self.movespeed

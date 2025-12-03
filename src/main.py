@@ -8,7 +8,7 @@ import screens.startMenu
 import settings
 
 # creates an Object from the "Apple" Class5
-apple = Apple("assets/char_apple/Apple_back_cropped.png", 100, 100)
+apple = Apple("assets/char_apple/Apple_back_cropped.png", 400, 400)
 fly = Fly("assets/char_fly/Fly.png", 100, 100)
 
 def update_game():
