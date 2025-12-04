@@ -1,6 +1,9 @@
 """This file cretes the enym class."""
 import pygame
 
+import settings
+
+
 class Fly:
     """Represents the enemy character."""
 
@@ -23,14 +26,29 @@ class Fly:
         self.hitbox = (self.x + 27, self.y + 37, self.width - 50, self.height - 65)
         pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
-    def handle_enemy_movement(self, width, height, player_pos):
+    def handle_enemy_movement(self, player):
         """Handles the automatic movement of the enemy."""
         #while collision is FALSE:
-        if player_pos.x > self.x:
-            self.x = self.x+self.movespeed
-        else:
-            self.x = self.x-self.movespeed
-        if player_pos.y < self.y:
-            self.y = self.y+self.movespeed
-        else:
-            self.y = self.y-self.movespeed
+
+         # up movement + restriction
+        if (player.y < self.y
+                and self.y - self.movespeed > 0):
+            self.y -= self.movespeed
+
+        # down movement
+        if (player.y > self.y
+                and self.y + self.height < settings.WIN_HEIGHT):
+            self.y += self.movespeed
+
+        # left movement
+        if (player.x < self.x
+                and self.x - self.movespeed > 0):
+            self.x -= self.movespeed
+
+        # right movement
+        if (player.x > self.x 
+                and self.x + self.movespeed + self.width < settings.WIN_WIDTH):
+            self.x += self.movespeed
+
+
+
