@@ -1,6 +1,8 @@
 """This file is for the playable character."""
 import pygame
 
+import settings
+
 
 class Apple:
     """Represents the playable character."""
@@ -24,7 +26,7 @@ class Apple:
         self.hitbox = (self.x + 15, self.y + 28, self.width -32, self.height- 40)
         pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
-    def handle_apple_movement(self, keys, width, height):
+    def handle_apple_movement(self, keys):
         """Handle the movement of the character."""
         # move up + restriction
         if (self.y - self.movespeed > 0
@@ -32,7 +34,7 @@ class Apple:
             self.y -= self.movespeed
 
         # move down + restriction
-        if (self.y + self.movespeed + self.height < height
+        if (self.y + self.movespeed + self.height < settings.WIN_HEIGHT
                 and (keys[pygame.K_DOWN] or keys[pygame.K_s])):
             self.y += self.movespeed
 
@@ -42,7 +44,7 @@ class Apple:
             self.x -= self.movespeed
 
         # move right + restriction
-        if (self.x + self.movespeed + self.width < width
+        if (self.x + self.movespeed + self.width < settings.WIN_WIDTH
                 and (keys[pygame.K_RIGHT] or keys[pygame.K_d])):
             self.x += self.movespeed
 
