@@ -15,6 +15,7 @@ fly = Fly("assets/char_fly/Fly.png", 100, 100)
 def update_game():
     keys = pygame.key.get_pressed()
     apple.handle_apple_movement(keys)
+    apple.update_wapons()
     fly.handle_enemy_movement(apple)
 
 def main():

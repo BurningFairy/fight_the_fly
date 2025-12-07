@@ -10,7 +10,7 @@ class Weapon:
      def __init__(self, apple_position):
           self.apple_position = apple_position
      
-     def update(self,apple_position):
+     def update_position(self,apple_position):
           self.apple_position = apple_position
 
      def use(self, direction):#platzhalter methode
