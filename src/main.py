@@ -6,8 +6,9 @@ from characters.enemies import Fly
 from screens import gameWindow
 import screens.startMenu
 import settings
+from shop import items
 
-# creates an Object from the "Apple" Class5
+# creates an Object from the "Apple" Class
 apple = Apple("assets/char_apple/Apple_back_cropped.png", 400, 400)
 fly = Fly("assets/char_fly/Fly.png", 100, 100)
 
