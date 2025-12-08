@@ -10,14 +10,25 @@ from shop import items
 
 # creates an Object from the "Apple" Class
 apple = Apple("assets/char_apple/Apple_back_cropped.png", 400, 400)
-fly = Fly("assets/char_fly/Fly.png", 100, 100)
+#fly = Fly("assets/char_fly/Fly.png", 100, 100)
+flies=[Fly("assets/char_fly/Fly.png", 100, 100),
+       Fly("assets/char_fly/Fly.png", 200, 200),
+       Fly("assets/char_fly/Fly.png", 300, 300)]
 
 def update_game():
+    global flies
     keys = pygame.key.get_pressed()
     apple.handle_apple_movement(keys)
-    apple.update_wapons()
-    fly.handle_enemy_movement(apple)
+    apple.update_wapons(flies)
+    for f in flies:
+        f.handle_enemy_movement(apple)
+    alive_flies=[]
+    for f in flies:
+        if not f.is_dead():
+            alive_flies.append(f)
+    flies=alive_flies
 
+    
 def main():
     """Define the main function of the game."""
     clock = pygame.time.Clock()
@@ -39,7 +50,7 @@ def main():
 
         elif gameState == "GAME":
             update_game()
-            gameWindow.draw_window(apple, fly)
+            gameWindow.draw_window(apple, flies)
 
 
 if __name__ == "__main__":

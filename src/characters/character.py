@@ -79,7 +79,7 @@ class Apple:
             change_x=1
             moved= True
         
-        self.position=[self.x, self.y]
+        self.position=[self.x + self.width//2, self.y + self.height//2]
         
         self.cocktailpick.update_position(self.position)
         self.flyswater.update_position(self.position)
@@ -96,19 +96,24 @@ class Apple:
         
        
        
-    def update_wapons(self):
+    def update_wapons(self,enemies):
         current=pygame.time.get_ticks()
 
         if current - self.last_cocktailpick>= self.cocktailpick_interval:
             self.cocktailpick.use(self.last_direction)
+            self.cocktailpick.check_hit(enemies)
             self.last_cocktailpick =current
         
         if current - self.last_flyswater>= self.flyswater_interval:
             self.flyswater.use(self.last_direction)
+            self.flyswater.check_hit(enemies)
             self.last_flyswater =current
 
         if current - self.last_bugspray>= self.bugspray_interval:
             self.bugspray.use(self.last_direction)
+            
             self.last_bugspray =current
 
-        self.bugspray.update()
+        #self.bugspray.update()
+
+        self.bugspray.update(enemies)

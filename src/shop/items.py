@@ -37,6 +37,20 @@ class Cocktailpick(Weapon):
 
           pygame.draw.line(window,(255,0,0), self.apple_position, (end_x, end_y),10) #todo durch bild erstzen
 
+     def check_hit(self, enemies):
+          end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length
+          end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length
+
+          weapon_line= pygame.Rect(
+               min(self.apple_position[0], end_x),
+               min(self.apple_position[1], end_y),
+               abs(end_x-self.apple_position[0])+1,
+               abs(end_y-self.apple_position[1])+1,
+          )
+          for enemy in enemies:
+               if enemy.hitbox.colliderect(weapon_line):
+                    enemy.take_damage(self.damage)
+
 class Flyswater(Weapon):
      """Class for the functions of Flyswater ."""
      def __init__(self, apple_position,length=60, damage=123):
@@ -57,13 +71,26 @@ class Flyswater(Weapon):
           end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length
           
           pygame.draw.line(window,(255,255,0), self.apple_position, (end_x, end_y),6) #todo durch bild erstzen
+     
+     def check_hit(self, enemies):
+          end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length
+          end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length
 
-
+          weapon_line= pygame.Rect(
+               min(self.apple_position[0], end_x),
+               min(self.apple_position[1], end_y),
+               abs(end_x-self.apple_position[0])+1,
+               abs(end_y-self.apple_position[1])+1,
+          )
+          for enemy in enemies:
+               if enemy.hitbox.colliderect(weapon_line):
+                    enemy.take_damage(self.damage)
 class Bugspray(Weapon):
      """Class for the  functions of Bugspray."""
      def __init__(self, apple_position,projectile_speed = 8, damage=60):
           super().__init__(apple_position)
           self.projectile_speed = projectile_speed 
+          self.damage=damage
           self.projectiles =[]
 
      def use( self, direction):
@@ -75,10 +102,16 @@ class Bugspray(Weapon):
           })
        # da noch schaden übergeben für gegner bei hit
      
-     def update(self):
+     def update(self,enemies):
           for p in self.projectiles:
                p["pos"][0] += p["vel"][0]
                p["pos"][1] += p["vel"][1]
+
+               for enemy in enemies:
+                    if enemy.hitbox.collidepoint(int(p["pos"][0]), int(p["pos"][1])):
+                         enemy.take_damage(self.damage)
+                         self.projectiles.remove(p)
+                         break
 
      def draw(self, window) :
           for p in self.projectiles:
