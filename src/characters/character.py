@@ -1,6 +1,6 @@
 """This file is for the playable character."""
 import pygame
-
+import math
 import settings
 from shop.items import Cocktailpick,Flyswater,Bugspray
 
@@ -48,37 +48,54 @@ class Apple:
         """Handle the movement of the character."""
         moved= False
        
+        change_x=0
+        change_y=0
         # move up + restriction
         if (self.y - self.movespeed > 0
                 and (keys[pygame.K_UP] or keys[pygame.K_w])):
             self.y -= self.movespeed
+           
+            change_y=-1
             moved= True
         # move down + restriction
         if (self.y + self.movespeed + self.height < settings.WIN_HEIGHT
                 and (keys[pygame.K_DOWN] or keys[pygame.K_s])):
             self.y += self.movespeed
+           
+            change_y=1
             moved= True
         # move left + restriction
         if (self.x - self.movespeed > 0
                 and (keys[pygame.K_LEFT] or keys[pygame.K_a])):
             self.x -= self.movespeed
+            
+            change_x=-1
             moved= True
         # move right + restriction
         if (self.x + self.movespeed + self.width < settings.WIN_WIDTH
                 and (keys[pygame.K_RIGHT] or keys[pygame.K_d])):
             self.x += self.movespeed
+           
+            change_x=1
             moved= True
-
+        
         self.position=[self.x, self.y]
-
+        
         self.cocktailpick.update_position(self.position)
         self.flyswater.update_position(self.position)
         self.bugspray.update_position(self.position)
 
-        if moved:
+        if change_x !=0 or change_y != 0:
+            self.last_direction=[change_x,change_y]
             self.cocktailpick.change_direction(self.last_direction)
             self.flyswater.change_direction(self.last_direction)
 
+        
+
+      
+        
+       
+       
     def update_wapons(self):
         current=pygame.time.get_ticks()
 

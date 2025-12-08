@@ -33,7 +33,7 @@ class Cocktailpick(Weapon):
 
      def draw (self, window):
           end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length
-          end_y = self.apple_position[1]+math.cos(math.radians(self.angle)) * self.length
+          end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length
 
           pygame.draw.line(window,(255,0,0), self.apple_position, (end_x, end_y),10) #todo durch bild erstzen
 
@@ -54,7 +54,7 @@ class Flyswater(Weapon):
 
      def draw (self, window):
           end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length
-          end_y = self.apple_position[1]+math.cos(math.radians(self.angle)) * self.length
+          end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length
           
           pygame.draw.line(window,(255,255,0), self.apple_position, (end_x, end_y),6) #todo durch bild erstzen
 
@@ -85,7 +85,8 @@ class Bugspray(Weapon):
                pygame.draw.circle(window, (0, 255, 0),
                                   (int(p["pos"][0]), int(p["pos"][1])),5)
                               
-
+     def change_direction(self, direction):# damit s gelich in die richtige richtung schaut
+          self.angle =   math.degrees(math.atan2(direction[1], direction[0]))
 
 class Accessories():
      """Class for the basic functions for Accessories ."""
