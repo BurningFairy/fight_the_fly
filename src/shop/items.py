@@ -115,7 +115,7 @@ class Bugspray(Weapon):
 
      def draw(self, window) :
           for p in self.projectiles:
-               pygame.draw.circle(window, (0, 255, 0),
+               pygame.draw.circle(window, (0, 0, 255),
                                   (int(p["pos"][0]), int(p["pos"][1])),5)
                               
      def change_direction(self, direction):# damit s gelich in die richtige richtung schaut

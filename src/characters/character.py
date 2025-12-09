@@ -33,7 +33,7 @@ class Apple:
 
         self.cocktailpick_interval=2000
         self.flyswater_interval=5000
-        self.bugspray_interval=3000
+        self.bugspray_interval=1000
 
         #shootingdirection
         self.last_direction=[1,0]
