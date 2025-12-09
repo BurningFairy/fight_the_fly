@@ -10,7 +10,7 @@ class Weapon:
      def __init__(self, apple_position):
           self.apple_position = apple_position
      
-     def update_position(self,apple_position):
+     def update_position(self,apple_position):# damit waffen am Character
           self.apple_position = apple_position
 
      def use(self, direction):#platzhalter methode
@@ -25,10 +25,9 @@ class Cocktailpick(Weapon):
           self.angle = 0
 
      def use(self, direction):
-          self.angle = math.degrees(math.atan2(direction[1], direction[0]))
-          # da noch schaden übergeben für gegner bei hit
-     
-     def change_direction(self, direction):# damit s gelich in die richtige richtung schaut
+          self.angle = math.degrees(math.atan2(direction[1], direction[0]))#letzte beweguung in winkel berechnen
+        
+     def change_direction(self, direction):# damit s gleich in die richtige richtung schaut
           self.angle =   math.degrees(math.atan2(direction[1], direction[0]))
 
      def draw (self, window):
@@ -93,16 +92,16 @@ class Bugspray(Weapon):
           self.damage=damage
           self.projectiles =[]
 
-     def use( self, direction):
+     def use( self, direction):# erzeugt kugel an spielerposition
           velocity = (direction [0]* self.projectile_speed,
                       direction [1]* self.projectile_speed)
           self.projectiles.append({
                "pos": list(self.apple_position) ,
                "vel": velocity
           })
-       # da noch schaden übergeben für gegner bei hit
+       
      
-     def update(self,enemies):
+     def update(self,enemies):# bewegung der kugel
           for p in self.projectiles:
                p["pos"][0] += p["vel"][0]
                p["pos"][1] += p["vel"][1]

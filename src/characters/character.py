@@ -46,8 +46,7 @@ class Apple:
 
     def handle_apple_movement(self, keys):
         """Handle the movement of the character."""
-        moved= False
-       
+    
         change_x=0
         change_y=0
         # move up + restriction
@@ -56,28 +55,28 @@ class Apple:
             self.y -= self.movespeed
            
             change_y=-1
-            moved= True
+        
         # move down + restriction
         if (self.y + self.movespeed + self.height < settings.WIN_HEIGHT
                 and (keys[pygame.K_DOWN] or keys[pygame.K_s])):
             self.y += self.movespeed
            
             change_y=1
-            moved= True
+          
         # move left + restriction
         if (self.x - self.movespeed > 0
                 and (keys[pygame.K_LEFT] or keys[pygame.K_a])):
             self.x -= self.movespeed
             
             change_x=-1
-            moved= True
+           
         # move right + restriction
         if (self.x + self.movespeed + self.width < settings.WIN_WIDTH
                 and (keys[pygame.K_RIGHT] or keys[pygame.K_d])):
             self.x += self.movespeed
            
             change_x=1
-            moved= True
+            
         
         self.position=[self.x + self.width//2, self.y + self.height//2]
         
