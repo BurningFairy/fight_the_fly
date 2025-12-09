@@ -87,7 +87,7 @@ class Flyswater(Weapon):
                     enemy.take_damage(self.damage)
 class Bugspray(Weapon):
      """Class for the  functions of Bugspray."""
-     def __init__(self, apple_position,projectile_speed = 8, damage=60):
+     def __init__(self, apple_position,projectile_speed = 8, damage=100):
           super().__init__(apple_position)
           self.projectile_speed = projectile_speed 
           self.damage=damage

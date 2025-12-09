@@ -19,7 +19,7 @@ class Fly:
         self.y = y
         self.health=health
 
-        self.movespeed = 4
+        self.movespeed = 1
         self.hitbox = pygame.Rect(self.x, self.y, self.width, self.height)
 
     def draw_enemy(self, window):
