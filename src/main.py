@@ -8,9 +8,9 @@ import screens.startMenu
 import settings
 from shop import items
 
+
 # creates an Object from the "Apple" Class
 apple = Apple("assets/char_apple/Apple_back_cropped.png", 400, 400)
-#fly = Fly("assets/char_fly/Fly.png", 100, 100)
 flies=[Fly("assets/char_fly/Fly.png", 100, 100),
        Fly("assets/char_fly/Fly.png", 200, 200),
        Fly("assets/char_fly/Fly.png", 300, 300)]
@@ -45,12 +45,17 @@ def main():
                 run = False
 
         if gameState == "MENU":
-            screens.startMenu.draw_startMenu()
-            gameState = screens.startMenu.logic_startMenu(events)
+            screens.startMenu.draw_startMenu(events)
+            gameState = screens.startMenu.draw_startMenu(events)
 
         elif gameState == "GAME":
             update_game()
             gameWindow.draw_window(apple, flies)
+
+        elif gameState == "QUIT":
+            run = False
+
+        pygame.display.update()
 
 
 if __name__ == "__main__":
