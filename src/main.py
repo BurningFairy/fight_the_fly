@@ -13,7 +13,10 @@ from shop import items
 apple = Apple("assets/char_apple/Apple_back_cropped.png", 400, 400)
 flies=[Fly("assets/char_fly/Fly.png", 100, 100),
        Fly("assets/char_fly/Fly.png", 200, 200),
-       Fly("assets/char_fly/Fly.png", 300, 300)]
+       Fly("assets/char_fly/Fly.png", 300, 500),
+       Fly("assets/char_fly/Fly.png", 300, 600),
+       Fly("assets/char_fly/Fly.png", 400, 300),
+       Fly("assets/char_fly/Fly.png", 500, 300)]
 
 def update_game():
     global flies

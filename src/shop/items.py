@@ -15,7 +15,10 @@ class Weapon:
 
      def use(self, direction):#platzhalter methode
           raise NotImplementedError
-           
+
+class MeleeWeapon: 
+     pass
+
 class Cocktailpick(Weapon):
      """Class for the functions of Cocktailpic ."""
      def __init__(self, apple_position,length=30, damage=100):
