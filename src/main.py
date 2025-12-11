@@ -4,6 +4,10 @@ import pygame
 from characters.character import Apple
 from characters.enemies import Fly
 from screens import gameWindow
+from screens import startMenu
+from screens import settingsWindow
+import screens.gameWindow
+import screens.settingsWindow
 import screens.startMenu
 import settings
 from shop import items
@@ -21,15 +25,18 @@ flies=[Fly("assets/char_fly/Fly.png", 100, 100),
 def update_game():
     global flies
     keys = pygame.key.get_pressed()
+
     apple.handle_apple_movement(keys)
     apple.update_wapons(flies)
+
     for f in flies:
         f.handle_enemy_movement(apple)
-    alive_flies=[]
+    alive_flies = []
     for f in flies:
         if not f.is_dead():
             alive_flies.append(f)
-    flies=alive_flies
+    
+    flies = alive_flies
 
     
 def main():
@@ -57,6 +64,11 @@ def main():
 
         elif gameState == "QUIT":
             run = False
+        
+        elif gameState == "SETTINGS":
+            screens.settingsWindow.draw_settingsmenu(events)
+            gameState = screens.settingsWindow.draw_settingsmenu(events)
+
 
         pygame.display.update()
 
