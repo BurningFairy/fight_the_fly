@@ -29,6 +29,7 @@ def draw_startMenu(events):
 
     startButton = draw_button("START", 100, 50, (255, 255, 255), settings.WIN_WIDTH // 2, settings.WIN_HEIGHT // 2 - 100)
     quitButton = draw_button("QUIT", 100, 50, (255, 255, 255), settings.WIN_WIDTH // 2, settings.WIN_HEIGHT // 2 - 25)
+    settingsButton = draw_button("SETTINGS", 100, 50, (255, 255, 255), settings.WIN_WIDTH // 2, settings.WIN_HEIGHT // 2 + 50)
 
 
     for event in events:
@@ -37,6 +38,8 @@ def draw_startMenu(events):
                 return "GAME"
             if quitButton.collidepoint(event.pos):
                 return "QUIT"
+            if settingsButton.collidepoint(event.pos):
+                return "SETTINGS"
     
     return "MENU"
     
