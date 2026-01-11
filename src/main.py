@@ -67,6 +67,7 @@ def main():
         
         elif gameState == "SETTINGS":
             screens.settingsWindow.draw_settingsmenu(events)
+            
             gameState = screens.settingsWindow.draw_settingsmenu(events)
 
 

@@ -5,7 +5,7 @@ import pygame
 from characters.character import Apple
 from characters.enemies import Fly
 import settings
-from shop.items import Cocktailpick,Flyswater,Bugspray
+#from shop.items import Cocktailpick,Flyswater,Bugspray
 
 
 def draw_window(apple, enemy):
@@ -15,10 +15,9 @@ def draw_window(apple, enemy):
     for en in enemy:
         en.draw_enemy(settings.WINDOW) # calls the draw function from enemies.py
    
-    apple.cocktailpick.draw(settings.WINDOW)
-    apple.flyswater.draw(settings.WINDOW)
-    apple.bugspray.draw(settings.WINDOW)
-
+    for weapon in apple.weapon_slots:
+        if weapon:
+            weapon.draw(settings.WINDOW)
     
 
     pygame.display.update()

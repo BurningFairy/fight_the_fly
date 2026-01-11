@@ -21,10 +21,15 @@ class Apple:
         self.hitbox = (self.x, self.y, self.width, self.height)
 
         self.position = [self.x, self.y]
+
+        #waffen slots
+        self.weapon_slots = [None, None]
+        self.weapon_slots[0] = Cocktailpick(self.position)
+        self.weapon_slots[1] = Bugspray(self.position)
         #waffen ezeugen:
-        self.cocktailpick= Cocktailpick(self.position)
-        self.flyswater = Flyswater(self.position)
-        self.bugspray =Bugspray(self.position)
+        #self.cocktailpick= Cocktailpick(self.position)
+        #self.flyswater = Flyswater(self.position)
+        #self.bugspray =Bugspray(self.position)
 
         # autofiretimer:
         self.last_cocktailpick=0
@@ -80,33 +85,48 @@ class Apple:
         
         self.position=[self.x + self.width//2, self.y + self.height//2]
         
-        self.cocktailpick.update_position(self.position)
-        self.flyswater.update_position(self.position)
-        self.bugspray.update_position(self.position)
+        #self.cocktailpick.update_position(self.position)
+        #self.flyswater.update_position(self.position)
+        #self.bugspray.update_position(self.position)
+        for weapon in self.weapon_slots:
+            if weapon:
+                weapon.update_position(self.position)
 
         if change_x !=0 or change_y != 0:
             self.last_direction=[change_x,change_y]
-            self.cocktailpick.change_direction(self.last_direction)
-            self.flyswater.change_direction(self.last_direction)
+            #self.cocktailpick.change_direction(self.last_direction)
+            #self.flyswater.change_direction(self.last_direction)
+            for weapon in self.weapon_slots:
+                if weapon and hasattr(weapon, "change_direction"):
+                    weapon.change_direction(self.last_direction)
 
-        
-
-      
-        
-       
-       
+   
     def update_wapons(self,enemies):
-        current=pygame.time.get_ticks()
+       def update_wapons(self, enemies):
+            current = pygame.time.get_ticks()
+
+            for weapon in self.weapon_slots:
+                if weapon is None:
+                    continue
+
+            weapon.use(self.last_direction)
+
+            if hasattr(weapon, "check_hit"):
+                weapon.check_hit(enemies)
+
+            if hasattr(weapon, "update"):
+                weapon.update(enemies)
+       """ current=pygame.time.get_ticks()
 
         if current - self.last_cocktailpick>= self.cocktailpick_interval:
             self.cocktailpick.use(self.last_direction)
             self.cocktailpick.check_hit(enemies)
-            self.last_cocktailpick =current
+            self.last_cocktailpick = current
         
         if current - self.last_flyswater>= self.flyswater_interval:
             self.flyswater.use(self.last_direction)
             self.flyswater.check_hit(enemies)
-            self.last_flyswater =current
+            self.last_flyswater = current
 
         if current - self.last_bugspray>= self.bugspray_interval:
             self.bugspray.use(self.last_direction)
@@ -115,4 +135,4 @@ class Apple:
 
         #self.bugspray.update()
 
-        self.bugspray.update(enemies)
+        self.bugspray.update(enemies)"""

@@ -11,13 +11,14 @@ class Fly:
         """Constructs an Object of Enemy"""
         self.width = width
         self.height = height
-
+        self.health=health
+        
         unscaled_image = pygame.image.load(image)
         self.image = pygame.transform.smoothscale(
             unscaled_image, (self.width, self.height))
         self.x = x
         self.y = y
-        self.health=health
+        
 
         self.movespeed = 1
         self.hitbox = pygame.Rect(self.x, self.y, self.width, self.height)
