@@ -118,25 +118,20 @@ class Flyswater(MeleeWeapon):
 
 
 class RangedWeapon(Weapon):
-                   pass                    
-class Bugspray(Weapon):
-     """Class for the  functions of Bugspray."""
-     def __init__(self, apple_position,projectile_speed = 8, damage=100):
+      def __init__(self, apple_position,projectile_speed, damage,):
           super().__init__(apple_position)
           self.projectile_speed = projectile_speed 
           self.damage=damage
-          self.projectiles =[]
+          self.projectiles =[]        
 
-     def use( self, direction):# erzeugt kugel an spielerposition
+      def use( self, direction):# erzeugt kugel an spielerposition
           velocity = (direction [0]* self.projectile_speed,
                       direction [1]* self.projectile_speed)
           self.projectiles.append({
                "pos": list(self.apple_position) ,
                "vel": velocity
-          })
-       
-     
-     def update(self,enemies):# bewegung der kugel
+          })          
+      def update(self,enemies):# bewegung der kugel
           for p in self.projectiles:
                p["pos"][0] += p["vel"][0]
                p["pos"][1] += p["vel"][1]
@@ -145,15 +140,26 @@ class Bugspray(Weapon):
                     if enemy.hitbox.collidepoint(int(p["pos"][0]), int(p["pos"][1])):
                          enemy.take_damage(self.damage)
                          self.projectiles.remove(p)
-                         break
+                         break                    
+                   
+class Bugspray(Weapon):
+     """Class for the  functions of Bugspray."""
+     def __init__(self, apple_position,):
+          super().__init__(apple_position)
+          self.projectile_speed = 8
+          self.damage=100
+          
+class FastGun(Weapon):
+       def __init__(self, apple_position,):
+          super().__init__(apple_position)
+          self.projectile_speed = 20
+          self.damage=50
 
-     def draw(self, window) :
-          for p in self.projectiles:
-               pygame.draw.circle(window, (0, 0, 255),
-                                  (int(p["pos"][0]), int(p["pos"][1])),5)
-                              
-     def change_direction(self, direction):# damit s gelich in die richtige richtung schaut
-          self.angle =   math.degrees(math.atan2(direction[1], direction[0]))
+class StrongGun(Weapon):
+       def __init__(self, apple_position,):
+          super().__init__(apple_position)
+          self.projectile_speed = 6
+          self.damage=150   
 
 class Accessories():
      """Class for the basic functions for Accessories ."""
