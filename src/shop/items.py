@@ -31,7 +31,7 @@ class MeleeWeapon(Weapon):
           end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length
           end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length
 
-          pygame.draw.line(window,(255,0,0), self.apple_position, (end_x, end_y),10) #todo durch bild erstzen
+          pygame.draw.line(window,(0,255,255), self.apple_position, (end_x, end_y),10) #todo durch bild erstzen
 
      def check_hit(self, enemies):
           end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length
@@ -133,7 +133,7 @@ class RangedWeapon(Weapon):
            if current_time -self.last_shot_time >=self.fire_intervall:
                 self.use(direction)
                 self.last_shot_time= current_time
-                    
+
       def use( self, direction):# erzeugt kugel an spielerposition
           velocity = (direction [0]* self.projectile_speed,
                       direction [1]* self.projectile_speed)

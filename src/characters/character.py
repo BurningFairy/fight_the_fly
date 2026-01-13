@@ -24,7 +24,7 @@ class Apple:
 
         #waffen slots
         self.weapon_slots = [None, None]
-        self.weapon_slots[0] = Cocktailpick(self.position)
+        self.weapon_slots[0] = Flyswater(self.position)
         self.weapon_slots[1] = Bugspray(self.position)
         #waffen ezeugen:
         #self.cocktailpick= Cocktailpick(self.position)
