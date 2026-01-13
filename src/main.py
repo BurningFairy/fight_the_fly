@@ -15,6 +15,9 @@ from shop import items
 
 # creates an Object from the "Apple" Class
 apple = Apple("assets/char_apple/Apple_back_cropped.png", 400, 400)
+
+#last_spawned=0
+#spawn_interval =30000
 flies=[Fly("assets/char_fly/Fly.png", 100, 100),
        Fly("assets/char_fly/Fly.png", 200, 200),
        Fly("assets/char_fly/Fly.png", 300, 500),
