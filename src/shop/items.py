@@ -118,12 +118,22 @@ class Flyswater(MeleeWeapon):
 
 
 class RangedWeapon(Weapon):
-      def __init__(self, apple_position,projectile_speed, damage,):
+      def __init__(self, apple_position,projectile_speed, damage,fire_intervall=1000):
           super().__init__(apple_position)
           self.projectile_speed = projectile_speed 
           self.damage=damage
-          self.projectiles =[]        
+          self.projectiles =[]    
 
+          #Autfire:
+          self.fire_intervall= fire_intervall    #
+          self.last_shot_time=0
+
+      def auto_fire(self,direction):
+           current_time=pygame.time.get_ticks()
+           if current_time -self.last_shot_time >=self.fire_intervall:
+                self.use(direction)
+                self.last_shot_time= current_time
+                    
       def use( self, direction):# erzeugt kugel an spielerposition
           velocity = (direction [0]* self.projectile_speed,
                       direction [1]* self.projectile_speed)
@@ -141,25 +151,30 @@ class RangedWeapon(Weapon):
                          enemy.take_damage(self.damage)
                          self.projectiles.remove(p)
                          break                    
-                   
-class Bugspray(Weapon):
+      def draw(self, window):
+          for p in self.projectiles:
+               pygame.draw.circle(
+                    window,
+                    (0, 0, 255),
+                    (int(p["pos"][0]), int(p["pos"][1])),
+                    5  # feste Größe
+               )                   
+class Bugspray(RangedWeapon):
      """Class for the  functions of Bugspray."""
      def __init__(self, apple_position,):
-          super().__init__(apple_position)
-          self.projectile_speed = 8
-          self.damage=100
+          super().__init__(apple_position,projectile_speed = 10,damage=100)
+          #self.projectile_speed = 8
+          #self.damage=100
           
-class FastGun(Weapon):
+class FastGun(RangedWeapon):
        def __init__(self, apple_position,):
-          super().__init__(apple_position)
-          self.projectile_speed = 20
-          self.damage=50
+          super().__init__(apple_position,projectile_speed = 20,damage=50)
+      
 
-class StrongGun(Weapon):
+class StrongGun(RangedWeapon):
        def __init__(self, apple_position,):
-          super().__init__(apple_position)
-          self.projectile_speed = 6
-          self.damage=150   
+          super().__init__(apple_position,projectile_speed = 5,damage=150)
+             
 
 class Accessories():
      """Class for the basic functions for Accessories ."""

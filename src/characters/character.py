@@ -2,7 +2,7 @@
 import pygame
 import math
 import settings
-from shop.items import Cocktailpick,Flyswater,Bugspray
+from shop.items import RangedWeapon,Cocktailpick,Flyswater,Bugspray, FastGun,StrongGun
 
 class Apple:
     """Represents the playable character."""
@@ -101,38 +101,16 @@ class Apple:
                     weapon.change_direction(self.last_direction)
 
    
-    def update_wapons(self,enemies):
-       def update_wapons(self, enemies):
-            current = pygame.time.get_ticks()
+    def update_weapons(self,enemies):
+        current_direction=self.last_direction
+        for weapon in self.weapon_slots:
+            if weapon is None:
+                continue
+            if isinstance(weapon,RangedWeapon):#, ob ein Objekt eine Instanz einer bestimmten Klasse
+                weapon.auto_fire(current_direction)
 
-            for weapon in self.weapon_slots:
-                if weapon is None:
-                    continue
-
-            weapon.use(self.last_direction)
-
-            if hasattr(weapon, "check_hit"):
-                weapon.check_hit(enemies)
-
-            if hasattr(weapon, "update"):
+            if hasattr(weapon,"update"):#überprüft, ob ein Objekt ein bestimmtes Attribut (oder eine Methode) besitzt
                 weapon.update(enemies)
-       """ current=pygame.time.get_ticks()
 
-        if current - self.last_cocktailpick>= self.cocktailpick_interval:
-            self.cocktailpick.use(self.last_direction)
-            self.cocktailpick.check_hit(enemies)
-            self.last_cocktailpick = current
-        
-        if current - self.last_flyswater>= self.flyswater_interval:
-            self.flyswater.use(self.last_direction)
-            self.flyswater.check_hit(enemies)
-            self.last_flyswater = current
-
-        if current - self.last_bugspray>= self.bugspray_interval:
-            self.bugspray.use(self.last_direction)
-            
-            self.last_bugspray =current
-
-        #self.bugspray.update()
-
-        self.bugspray.update(enemies)"""
+      
+      

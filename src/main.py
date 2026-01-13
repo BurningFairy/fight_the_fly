@@ -27,7 +27,7 @@ def update_game():
     keys = pygame.key.get_pressed()
 
     apple.handle_apple_movement(keys)
-    apple.update_wapons(flies)
+    apple.update_weapons(flies)
 
     for f in flies:
         f.handle_enemy_movement(apple)
