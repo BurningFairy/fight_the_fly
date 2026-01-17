@@ -58,10 +58,10 @@ class MeleeWeapon(Weapon):
 
      def check_hit(self, enemies):
           """check if eneny is hit by weapon"""
-          end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length
+          end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length#wo zeigt waffe hin länge + Winkel
           end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length
 
-          weapon_line= pygame.Rect(# Create a rectangle around the weapon line
+          weapon_line= pygame.Rect(# Create a rectangle around the weapon line as hitbox
                min(self.apple_position[0], end_x),
                min(self.apple_position[1], end_y),
                abs(end_x-self.apple_position[0])+1,
@@ -127,7 +127,8 @@ class RangedWeapon(Weapon):
                     if enemy.hitbox.collidepoint(int(p["pos"][0]), int(p["pos"][1])):
                          enemy.take_damage(self.damage)
                          self.projectiles.remove(p)
-                         break                    
+                         break             
+                           
       def draw(self, window):
           """Draw all Bullets"""
           for p in self.projectiles:

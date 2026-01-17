@@ -52,7 +52,7 @@ class Apple:
     def handle_apple_movement(self, keys):
         """Handle the movement of the character."""
     
-        change_x=0
+        change_x=0#startposition
         change_y=0
         # move up + restriction
         if (self.y - self.movespeed > 0
@@ -88,15 +88,15 @@ class Apple:
         #self.cocktailpick.update_position(self.position)
         #self.flyswater.update_position(self.position)
         #self.bugspray.update_position(self.position)
-        for weapon in self.weapon_slots:
+        for weapon in self.weapon_slots: # Waffenposition aktualisieren
             if weapon:
                 weapon.update_position(self.position)
 
-        if change_x !=0 or change_y != 0:
+        if change_x !=0 or change_y != 0: # Letzte Bewegungsrichtung speichern
             self.last_direction=[change_x,change_y]
             #self.cocktailpick.change_direction(self.last_direction)
             #self.flyswater.change_direction(self.last_direction)
-            for weapon in self.weapon_slots:
+            for weapon in self.weapon_slots:# Waffen in Blickrichtung drehen (nur Melee)
                 if weapon and hasattr(weapon, "change_direction"):
                     weapon.change_direction(self.last_direction)
 
@@ -106,9 +106,11 @@ class Apple:
         for weapon in self.weapon_slots:
             if weapon is None:
                 continue
+            # Automatisches Schießen für Fernkampfwaffen
             if isinstance(weapon,RangedWeapon):#, ob ein Objekt eine Instanz einer bestimmten Klasse
                 weapon.auto_fire(current_direction)
-
+                
+             # Projektile oder Treffer aktualisieren
             if hasattr(weapon,"update"):#überprüft, ob ein Objekt ein bestimmtes Attribut (oder eine Methode) besitzt
                 weapon.update(enemies)
 

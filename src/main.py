@@ -34,6 +34,7 @@ ry= random.randint(0,700)
 
 
 def enemy_create(x, y):
+    """Create a new enemy at the given position. """
     return Fly("assets/char_fly/Fly.png", x, y)
 
 flies=[enemy_create(ax, ay),
@@ -43,6 +44,7 @@ flies=[enemy_create(ax, ay),
     enemy_create(rx, ry)]
 
 def update_game():
+    """ Update all game objecst"""
     global flies
     keys = pygame.key.get_pressed()
 
@@ -77,7 +79,7 @@ def update_game():
     enemy_create(rx, ry)]
     
 def main():
-    """Define the main function of the game."""
+    """Define the main game loop."""
     clock = pygame.time.Clock()
     run = True
 

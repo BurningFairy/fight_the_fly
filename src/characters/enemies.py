@@ -7,7 +7,7 @@ import settings
 class Fly:
     """Represents the enemy character."""
 
-    def __init__(self, image, x, y, height = 100, width = 100, health=100):
+    def __init__(self, image, x, y, height = 100, width = 100, health = 100):
         """Constructs an Object of Enemy"""
         self.width = width
         self.height = height
@@ -31,7 +31,7 @@ class Fly:
 
     def handle_enemy_movement(self, player):
         """Handles the automatic movement of the enemy."""
-        #while collision is FALSE:
+       
 
          # up movement + restriction
         if (player.y < self.y
@@ -54,7 +54,9 @@ class Fly:
             self.x += self.movespeed
 
     def take_damage(self,damage):
+        """Reduce ennemy Health"""
         self.health-= damage
 
     def is_dead(self):
+        """ Check if enemy is dead """
         return self.health <=0

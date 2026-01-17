@@ -10,6 +10,7 @@ pygame.init()
 
 
 def draw_settingsmenu(events):
+    """ Draw the settings menu and handle input."""
     settings.WINDOW.blit(settings.BG_IMAGE, (0, 0))
 
     testButton = screens.startMenu.draw_button("TEST", 50, 50, (255, 255, 255),
