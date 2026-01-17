@@ -27,10 +27,7 @@ class Apple:
         self.weapon_slots = [None, None]
         self.weapon_slots[0] = Flyswater(self.position)
         self.weapon_slots[1] = Bugspray(self.position)
-        #waffen ezeugen:
-        #self.cocktailpick= Cocktailpick(self.position)
-        #self.flyswater = Flyswater(self.position)
-        #self.bugspray =Bugspray(self.position)
+        
 
         # autofiretimer:
         self.last_cocktailpick=0
@@ -86,20 +83,17 @@ class Apple:
         
         self.position=[self.x + self.width//2, self.y + self.height//2]
         
-        #self.cocktailpick.update_position(self.position)
-        #self.flyswater.update_position(self.position)
-        #self.bugspray.update_position(self.position)
+      
         for weapon in self.weapon_slots: # Waffenposition aktualisieren
             if weapon:
                 weapon.update_position(self.position)
 
         if change_x !=0 or change_y != 0: # Letzte Bewegungsrichtung speichern
             self.last_direction=[change_x,change_y]
-            #self.cocktailpick.change_direction(self.last_direction)
-            #self.flyswater.change_direction(self.last_direction)
+            #
             for weapon in self.weapon_slots:# Waffen in Blickrichtung drehen (nur Melee)
-                if weapon and hasattr(weapon, "change_direction"):
-                    weapon.change_direction(self.last_direction)
+                if weapon and isinstance(weapon,MeleeWeapon):
+                    weapon.use(self.last_direction)
 
    
     def update_weapons(self,enemies):

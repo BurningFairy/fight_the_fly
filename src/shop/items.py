@@ -31,7 +31,7 @@ class Weapon:
 
 class MeleeWeapon(Weapon): 
      """
-    BAss class for melee weapons.
+    Bass class for melee weapons.
 
     Melee weapons hit enemies in front of the player.
     """    
@@ -41,17 +41,13 @@ class MeleeWeapon(Weapon):
 
      def use(self, direction):
           """ Use the melee weapon.
-        Converts movement direction into an angle. """
+          Converts movement direction into an angle. """
           self.angle = math.degrees(math.atan2(direction[1], direction[0]))#letzte beweguung in winkel berechnen
         
-     def change_direction(self, direction):# damit s gleich in die richtige richtung schaut
-          """change the weapon direction without attacking.
-          """
-          self.angle =   math.degrees(math.atan2(direction[1], direction[0]))
-
+   
      def draw (self, window):
           """draw the the meleweapon """
-          end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length
+          end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length#
           end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length
 
           pygame.draw.line(window,(0,255,255), self.apple_position, (end_x, end_y),10) #todo durch bild erstzen
