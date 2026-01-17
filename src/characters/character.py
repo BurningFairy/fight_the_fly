@@ -2,7 +2,7 @@
 import pygame
 import math
 import settings
-from shop.items import RangedWeapon,Cocktailpick,Flyswater,Bugspray, FastGun,StrongGun
+from shop.items import RangedWeapon,Cocktailpick,Flyswater,Bugspray, FastGun,StrongGun, MeleeWeapon
 
 class Apple:
     """Represents the playable character."""
@@ -106,6 +106,11 @@ class Apple:
         for weapon in self.weapon_slots:
             if weapon is None:
                 continue
+
+            # Nahkampfwaffen Schaden prüfen
+            if isinstance(weapon,MeleeWeapon):
+                weapon.check_hit(enemies)
+                
             # Automatisches Schießen für Fernkampfwaffen
             if isinstance(weapon,RangedWeapon):#, ob ein Objekt eine Instanz einer bestimmten Klasse
                 weapon.auto_fire(current_direction)
