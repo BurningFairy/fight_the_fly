@@ -118,6 +118,7 @@ class RangedWeapon(Weapon):
                "vel": velocity
           })          
       def update(self,enemies):# bewegung der kugel
+          """Update bulletmovment and check collisions"""
           for p in self.projectiles:
                p["pos"][0] += p["vel"][0]
                p["pos"][1] += p["vel"][1]
@@ -128,6 +129,7 @@ class RangedWeapon(Weapon):
                          self.projectiles.remove(p)
                          break                    
       def draw(self, window):
+          """Draw all Bullets"""
           for p in self.projectiles:
                pygame.draw.circle(
                     window,
