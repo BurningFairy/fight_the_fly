@@ -99,15 +99,15 @@ class RangedWeapon(Weapon):
           self.projectiles =[]    
 
           #for Autfire:
-          self.fire_intervall= fire_intervall    #
-          self.last_shot_time=0
+          self.fire_intervall = fire_intervall    #
+          self.last_shot_time = 0
 
       def auto_fire(self,direction):
            """shoot automatically after defined time"""
            current_time=pygame.time.get_ticks()
-           if current_time -self.last_shot_time >=self.fire_intervall:
+           if current_time -self.last_shot_time >= self.fire_intervall:
                 self.use(direction)
-                self.last_shot_time= current_time
+                self.last_shot_time = current_time
 
       def use( self, direction):# erzeugt kugel an spielerposition
           """ctreate projectil at appleposition"""
@@ -138,18 +138,19 @@ class RangedWeapon(Weapon):
 class Bugspray(RangedWeapon):
      """Class for the  functions of Bugspray."""
      def __init__(self, apple_position,):
-          super().__init__(apple_position,projectile_speed = 10,damage=100)
-          #self.projectile_speed = 8
-          #self.damage=100
+          super().__init__(apple_position,projectile_speed = 10,damage = 100)
+        
           
 class FastGun(RangedWeapon):
-       def __init__(self, apple_position,):
-          super().__init__(apple_position,projectile_speed = 20,damage=50)
+     """Class for the  functions of FastGun."""
+     def __init__(self, apple_position,):
+          super().__init__(apple_position,projectile_speed = 20,damage = 50)
       
 
 class StrongGun(RangedWeapon):
-       def __init__(self, apple_position,):
-          super().__init__(apple_position,projectile_speed = 5,damage=150)
+          """Class for the  functions of StrongGun."""
+          def __init__(self, apple_position,):
+               super().__init__(apple_position,projectile_speed = 5,damage = 150)
              
 
 class Accessories():
