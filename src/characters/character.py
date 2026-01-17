@@ -29,14 +29,8 @@ class Apple:
         self.weapon_slots[1] = Bugspray(self.position)
         
 
-        # autofiretimer:
-        self.last_cocktailpick=0
-        self.last_flyswater=0
-        self.last_bugspray=0
-
-        self.cocktailpick_interval=2000
-        self.flyswater_interval=5000
-        self.bugspray_interval=1000
+        
+      
 
         #shootingdirection
         self.last_direction=[1,0]
