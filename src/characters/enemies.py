@@ -1,6 +1,7 @@
 """This file cretes the enym class."""
-import pygame
 
+from resource_path import resource_path
+import pygame
 import settings
 
 
@@ -13,7 +14,7 @@ class Fly:
         self.height = height
         self.health=health
         
-        unscaled_image = pygame.image.load(image)
+        unscaled_image = pygame.image.load(resource_path(image))
         self.image = pygame.transform.smoothscale(
             unscaled_image, (self.width, self.height))
         self.x = x

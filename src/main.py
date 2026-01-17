@@ -1,6 +1,5 @@
 """This file includes the main function."""
-
-    
+from resource_path import resource_path
 
 import pygame
 import random
@@ -16,9 +15,9 @@ import screens.startMenu
 import settings
 from shop import items
 
-
+apple_image = resource_path("assets/char_apple/Apple_back_cropped.png")
 # creates an Object from the "Apple" Class
-apple = Apple("assets/char_apple/Apple_back_cropped.png", 400, 400)
+apple = Apple(apple_image,400, 400)
 
 # creates random coordinates, that will be used to set the spawn-point of the enemies
 ax= random.randint(0,600)
@@ -35,7 +34,8 @@ ry= random.randint(0,700)
 
 def enemy_create(x, y):
     """Create a new enemy at the given position. """
-    return Fly("assets/char_fly/Fly.png", x, y)
+    fly_image=resource_path("assets/char_fly/Fly.png")
+    return Fly(fly_image, x, y)
 
 flies=[enemy_create(ax, ay),
     enemy_create(bx, by),

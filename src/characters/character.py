@@ -1,4 +1,5 @@
 """This file is for the playable character."""
+from resource_path import resource_path
 import pygame
 import math
 import settings
@@ -12,7 +13,7 @@ class Apple:
         self.width = height
         self.height = width
 
-        unscaled_image = pygame.image.load(image)
+        unscaled_image = pygame.image.load(resource_path(image))
         self.image = pygame.transform.smoothscale(
             unscaled_image, (self.width, self.height))
         self.x = x
