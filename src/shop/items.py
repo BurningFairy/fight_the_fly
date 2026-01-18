@@ -36,6 +36,7 @@ class MeleeWeapon(Weapon):
     Melee weapons hit enemies in front of the player.
     """    
      def __init__(self, apple_position,):
+          """  Constructs MeleeWeapon"""
           super().__init__(apple_position)
           self.angle = 0# Weapon direction in degrees
 
@@ -70,6 +71,7 @@ class MeleeWeapon(Weapon):
 class Cocktailpick(MeleeWeapon):
      """Class for the functions of Cocktailpic ."""
      def __init__(self, apple_position,length=30, damage=100):
+          """Constructs Cocktailpick"""         
           super().__init__(apple_position)
           self.length = length
           self.damage = damage
@@ -80,6 +82,7 @@ class Cocktailpick(MeleeWeapon):
 class Flyswater(MeleeWeapon):
      """Class for the functions of Flyswater ."""
      def __init__(self, apple_position,length=60, damage=123):
+          """Constructs Flyswater"""           
           super().__init__(apple_position)
           self.length = length
           self.damage = damage
@@ -89,6 +92,7 @@ class Flyswater(MeleeWeapon):
 class RangedWeapon(Weapon):
       """Bass class for ranged Weapons"""
       def __init__(self, apple_position,projectile_speed, damage,fire_intervall=1000):
+          """Constructs RangedWeapon"""
           super().__init__(apple_position)
           self.projectile_speed = projectile_speed 
           self.damage=damage
@@ -137,18 +141,21 @@ class RangedWeapon(Weapon):
 class Bugspray(RangedWeapon):
      """Class for the  functions of Bugspray."""
      def __init__(self, apple_position,):
+          """Constructs Bugspray"""            
           super().__init__(apple_position,projectile_speed = 10,damage = 100)
         
           
 class FastGun(RangedWeapon):
      """Class for the  functions of FastGun."""
      def __init__(self, apple_position,):
+          """Constructs FAstgun"""               
           super().__init__(apple_position,projectile_speed = 20,damage = 50)
       
 
 class StrongGun(RangedWeapon):
           """Class for the  functions of StrongGun."""
           def __init__(self, apple_position,):
+               """Constructs Strongun"""
                super().__init__(apple_position,projectile_speed = 5,damage = 150)
              
 
