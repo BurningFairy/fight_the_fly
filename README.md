@@ -30,6 +30,9 @@ Requirements:
 Python 3.9 (Download from https://www.python.org)
 Pygame (pip install pygame)
 
+Instructions:
+
+To play the game open the "Dis" folder and double-click the main.exe file  
 
 Authors:
 

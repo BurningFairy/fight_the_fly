@@ -46,31 +46,41 @@ class Apple:
     
         change_x=0#startposition
         change_y=0
+        speed=self.movespeed
+
+        up=(keys[pygame.K_UP] or keys[pygame.K_w])
+        down=(keys[pygame.K_DOWN] or keys[pygame.K_s])
+        left=(keys[pygame.K_LEFT] or keys[pygame.K_a])
+        right=(keys[pygame.K_RIGHT] or keys[pygame.K_d])
+
+        if (up or down) and (right or left):
+            speed *=0.6
+
         # move up + restriction
-        if (self.y - self.movespeed > 0
-                and (keys[pygame.K_UP] or keys[pygame.K_w])):
-            self.y -= self.movespeed
+        if (self.y - speed > 0
+                and up):
+            self.y -= speed
            
             change_y=-1
         
         # move down + restriction
-        if (self.y + self.movespeed + self.height < settings.WIN_HEIGHT
-                and (keys[pygame.K_DOWN] or keys[pygame.K_s])):
-            self.y += self.movespeed
+        if (self.y + speed + self.height < settings.WIN_HEIGHT
+                and down):
+            self.y += speed
            
             change_y=1
           
         # move left + restriction
-        if (self.x - self.movespeed > 0
-                and (keys[pygame.K_LEFT] or keys[pygame.K_a])):
-            self.x -= self.movespeed
+        if (self.x - speed > 0
+                and left):
+            self.x -= speed
             
             change_x=-1
            
         # move right + restriction
-        if (self.x + self.movespeed + self.width < settings.WIN_WIDTH
-                and (keys[pygame.K_RIGHT] or keys[pygame.K_d])):
-            self.x += self.movespeed
+        if (self.x + speed + self.width < settings.WIN_WIDTH
+                and right):
+            self.x += speed
            
             change_x=1
             
@@ -84,7 +94,7 @@ class Apple:
 
         if change_x !=0 or change_y != 0: # Letzte Bewegungsrichtung speichern
             self.last_direction=[change_x,change_y]
-            #
+            
             for weapon in self.weapon_slots:# Waffen in Blickrichtung drehen (nur Melee)
                 if weapon and isinstance(weapon,MeleeWeapon):
                     weapon.use(self.last_direction)
