@@ -19,6 +19,8 @@ apple_image = resource_path("assets/char_apple/Apple_back_cropped.png")
 # creates an Object from the "Apple" Class
 apple = Apple(apple_image,400, 400)
 
+timerStart = None
+
 def enemy_create(x, y):
     """Create a new enemy at the given position. """
     fly_image=resource_path("assets/char_fly/Fly.png")
@@ -46,6 +48,11 @@ def update_game():
     for f in flies:
         if not f.is_dead():
             alive_flies.append(f)
+            
+    for f in flies:
+        if apple.check_collision(f):
+            return False
+    
     
     flies = alive_flies
 
@@ -60,6 +67,9 @@ def update_game():
         while added_flies < level:
             flies.append(enemy_create(random.randint(0,1200), random.randint(0,700)))
             added_flies += 1
+
+    return True
+    
     
 def main():
     """Define the main game loop."""
@@ -77,19 +87,25 @@ def main():
                 run = False
 
         if gameState == "MENU":
+            timerStart = None
             screens.startMenu.draw_startMenu(events)
             gameState = screens.startMenu.draw_startMenu(events)
 
         elif gameState == "GAME":
-            update_game()
-            gameWindow.draw_window(apple, flies)
+            if timerStart == None:
+                timerStart = pygame.time.get_ticks()
+            if not update_game(): #update_game returns False if character collides with enemy
+                gameState = "MENU"
+                timerStart = None
+            else:
+                gameWindow.draw_window(apple, flies, timerStart)
+
 
         elif gameState == "QUIT":
             run = False
         
         elif gameState == "SETTINGS":
             screens.settingsWindow.draw_settingsmenu(events)
-            
             gameState = screens.settingsWindow.draw_settingsmenu(events)
 
 
