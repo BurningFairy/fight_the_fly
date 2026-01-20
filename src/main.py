@@ -19,29 +19,18 @@ apple_image = resource_path("assets/char_apple/Apple_back_cropped.png")
 # creates an Object from the "Apple" Class
 apple = Apple(apple_image,400, 400)
 
-# creates random coordinates, that will be used to set the spawn-point of the enemies
-ax= random.randint(0,600)
-ay= random.randint(0,300)
-bx= random.randint(600,1200)
-by= random.randint(0,300)
-cx= random.randint(0,600)
-cy= random.randint(300,700)
-dx= random.randint(600,1200)
-dy= random.randint(300,700)
-rx= random.randint(0,1200)
-ry= random.randint(0,700)
-
-
 def enemy_create(x, y):
     """Create a new enemy at the given position. """
     fly_image=resource_path("assets/char_fly/Fly.png")
     return Fly(fly_image, x, y)
 
-flies=[enemy_create(ax, ay),
-    enemy_create(bx, by),
-    enemy_create(cx, cy),
-    enemy_create(dx, dy),
-    enemy_create(rx, ry)]
+flies=[enemy_create(random.randint(0,600), random.randint(0,300)),
+    enemy_create(random.randint(600,1200), random.randint(0,300)),
+    enemy_create(random.randint(0,600), random.randint(300,700)),
+    enemy_create(random.randint(600,1200), random.randint(300,700)),
+    enemy_create(random.randint(0,1200), random.randint(0,700))]
+
+level= 1
 
 def update_game():
     """ Update all game objecst"""
@@ -60,23 +49,17 @@ def update_game():
     
     flies = alive_flies
 
-    ax= random.randint(0,600)
-    ay= random.randint(0,300)
-    bx= random.randint(600,1200)
-    by= random.randint(0,300)
-    cx= random.randint(0,600)
-    cy= random.randint(300,700)
-    dx= random.randint(600,1200)
-    dy= random.randint(300,700)
-    rx= random.randint(0,1200)
-    ry= random.randint(0,700)
-
     if flies == []:
-        flies= [enemy_create(ax, ay),
-    enemy_create(bx, by),
-    enemy_create(cx, cy),
-    enemy_create(dx, dy),
-    enemy_create(rx, ry)]
+        global level
+        level += 1
+        added_flies=0
+        flies= [enemy_create(random.randint(0,600), random.randint(0,300)),
+            enemy_create(random.randint(600,1200), random.randint(0,300)),
+            enemy_create(random.randint(0,600), random.randint(300,700)),
+            enemy_create(random.randint(600,1200), random.randint(300,700))]
+        while added_flies < level:
+            flies.append(enemy_create(random.randint(0,1200), random.randint(0,700)))
+            added_flies += 1
     
 def main():
     """Define the main game loop."""
