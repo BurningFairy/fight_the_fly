@@ -11,7 +11,7 @@ A gameplay screen
 Enemies that follow the player
 Melee and ranged weapons with auto-fire
 
-HOw to play:
+How to play:
 Move the player with the keyboard
 The character attacks automatically
 Enemies follow the player
