@@ -3,7 +3,7 @@ from resource_path import resource_path
 import pygame
 import math
 import settings
-from shop.items import RangedWeapon,Cocktailpick,Flyswater,Bugspray, FastGun,StrongGun, MeleeWeapon
+from shop.items import RangedWeapon,Cocktailpick,Bugspray, FastGun,StrongGun, MeleeWeapon,Flyswater
 
 class Apple:
     """Represents the playable character."""
@@ -25,7 +25,7 @@ class Apple:
 
         #waffen slots
         self.weapon_slots = [None, None]
-        self.weapon_slots[0] = Flyswater(self.position)
+        self.weapon_slots[0] = Cocktailpick(self.position)
         self.weapon_slots[1] = Bugspray(self.position)
         
 

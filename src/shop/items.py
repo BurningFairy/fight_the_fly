@@ -4,6 +4,7 @@ items.py
 This module contains all weapon and item classes for the game.
 It includes melee weapons, ranged weapons, and accessories.
 """
+from resource_path import resource_path
 import pygame
 import math
 
@@ -35,10 +36,11 @@ class MeleeWeapon(Weapon):
 
     Melee weapons hit enemies in front of the player.
     """    
-     def __init__(self, apple_position,):
+     def __init__(self, apple_position):
           """  Constructs MeleeWeapon"""
           super().__init__(apple_position)
           self.angle = 0# Weapon direction in degrees
+          
 
      def use(self, direction):
           """ Use the melee weapon.
@@ -52,6 +54,8 @@ class MeleeWeapon(Weapon):
           end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length
 
           pygame.draw.line(window,(0,255,255), self.apple_position, (end_x, end_y),10) #todo durch bild erstzen
+          
+        
 
      def check_hit(self, enemies):
           """check if eneny is hit by weapon"""
@@ -70,8 +74,9 @@ class MeleeWeapon(Weapon):
 
 class Cocktailpick(MeleeWeapon):
      """Class for the functions of Cocktailpic ."""
-     def __init__(self, apple_position,length=30, damage=100):
-          """Constructs Cocktailpick"""         
+     def __init__(self, apple_position,length=100, damage=100):
+          """Constructs Cocktailpick"""
+          
           super().__init__(apple_position)
           self.length = length
           self.damage = damage
@@ -79,14 +84,15 @@ class Cocktailpick(MeleeWeapon):
 
  
 
+
 class Flyswater(MeleeWeapon):
-     """Class for the functions of Flyswater ."""
-     def __init__(self, apple_position,length=60, damage=123):
-          """Constructs Flyswater"""           
-          super().__init__(apple_position)
-          self.length = length
-          self.damage = damage
-          self.angle = 0
+      """Class for the functions of Flyswater ."""
+      def __init__(self, apple_position,length=60, damage=123):
+           """Constructs Flyswater"""
+           super().__init__(apple_position)
+           self.length = length
+           self.damage = damage
+           self.angle = 0
 
 
 class RangedWeapon(Weapon):
