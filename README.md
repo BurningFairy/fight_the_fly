@@ -15,7 +15,7 @@ How to play:
 Move the player with the keyboard
 The character attacks automatically
 Enemies follow the player
-When all enemies are defeated, new enemies spaw.
+When all enemies are defeated, new enemies spawn.
 
 Controls:
 
