@@ -19,7 +19,7 @@ class Apple:
         self.x = x
         self.y = y
         self.movespeed = 5
-        self.hitbox = (self.x, self.y, self.width, self.height)
+        self.hitbox = pygame.Rect(self.x, self.y, self.width, self.height)
 
         self.position = [self.x, self.y]
 
@@ -28,18 +28,17 @@ class Apple:
         self.weapon_slots[0] = Cocktailpick(self.position)
         self.weapon_slots[1] = Bugspray(self.position)
         
-
-        
-      
-
         #shootingdirection
         self.last_direction=[1,0]
 
     def draw_apple(self, window):
         """Draw the char onto the WINDOW surface."""
         window.blit(self.image, (self.x, self.y))
-        self.hitbox = (self.x + 15, self.y + 28, self.width -32, self.height- 40)
-        pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+        self.hitbox = pygame.Rect(self.x + 15, self.y + 28, self.width - 32, self.height - 40)
+
+    def check_collision(self, enemy):
+        """checks if enemy collides with character"""
+        return self.hitbox.colliderect(enemy.hitbox)
 
     def handle_apple_movement(self, keys):
         """Handle the movement of the character."""

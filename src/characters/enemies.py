@@ -28,7 +28,6 @@ class Fly:
         """Draw the enemy onto the WINDOW surface."""
         window.blit(self.image, (self.x, self.y))
         self.hitbox.update(self.x + 27, self.y + 37, self.width - 50, self.height - 65)
-        pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def handle_enemy_movement(self, player):
         """Handles the automatic movement of the enemy."""
