@@ -23,14 +23,18 @@ def enemy_create(x, y):
     """Create a new enemy at the given position. """
     fly_image=resource_path("assets/char_fly/Fly.png")
     return Fly(fly_image, x, y)
+level = 0
+flies = []
+def reset_game():
+    global flies
+    flies = [enemy_create(random.randint(0,600), random.randint(0,300)),
+        enemy_create(random.randint(600,1200), random.randint(0,300)),
+        enemy_create(random.randint(0,600), random.randint(300,700)),
+        enemy_create(random.randint(600,1200), random.randint(300,700)),
+        enemy_create(random.randint(0,1200), random.randint(0,700))]
+    level = 1
 
-flies=[enemy_create(random.randint(0,600), random.randint(0,300)),
-    enemy_create(random.randint(600,1200), random.randint(0,300)),
-    enemy_create(random.randint(0,600), random.randint(300,700)),
-    enemy_create(random.randint(600,1200), random.randint(300,700)),
-    enemy_create(random.randint(0,1200), random.randint(0,700))]
 
-level= 1
 
 def update_game():
     """ Update all game objecst"""
@@ -93,6 +97,7 @@ def main():
             if timerStart == None:
                 timerStart = pygame.time.get_ticks()
             if not update_game(): #update_game returns False if character collides with enemy
+                reset_game()
                 gameState = "MENU"
                 timerStart = None
             else:
