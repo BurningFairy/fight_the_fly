@@ -45,13 +45,13 @@ class MeleeWeapon(Weapon):
      def use(self, direction):
           """ Use the melee weapon.
           Converts movement direction into an angle. """
-          self.angle = math.degrees(math.atan2(direction[1], direction[0]))#letzte beweguung in winkel berechnen
+          self.angle = math.degrees(math.atan2(direction[1], direction[0]))#aus bewgungsrichtung  winkel  der waffe berechnen
         
    
      def draw (self, window):
           """draw the the meleweapon """
-          end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length#
-          end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length
+          end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length# horizontaler Abstand vom Spieler bis zum Ende
+          end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length#vertikaler Abstand vom Spieler bis zum Ende
 
           pygame.draw.line(window,(0,255,255), self.apple_position, (end_x, end_y),10) #todo durch bild erstzen
           
@@ -59,14 +59,14 @@ class MeleeWeapon(Weapon):
 
      def check_hit(self, enemies):
           """check if eneny is hit by weapon"""
-          end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length#wo zeigt waffe hin länge + Winkel
-          end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length
+          end_x = self.apple_position[0]+math.cos(math.radians(self.angle)) * self.length# horizontaler Abstand vom Spieler bis zum Ende
+          end_y = self.apple_position[1]+math.sin(math.radians(self.angle)) * self.length#vertikaler Abstand vom Spieler bis zum Ende
 
           weapon_line= pygame.Rect(# Create a rectangle around the weapon line as hitbox
-               min(self.apple_position[0], end_x),
-               min(self.apple_position[1], end_y),
-               abs(end_x-self.apple_position[0])+1,
-               abs(end_y-self.apple_position[1])+1,
+               min(self.apple_position[0], end_x), #Anfangspunkt X-Koordinate 
+               min(self.apple_position[1], end_y),#Anfangspunkt Y-Koordinate --> min weil rect immer von oben links zeichnet
+               abs(end_x-self.apple_position[0])+1, #Betrag für Breite +1 damit niemals Null
+               abs(end_y-self.apple_position[1])+1,#Betrag für Höhe 
           )
           for enemy in enemies:
                if enemy.hitbox.colliderect(weapon_line):
@@ -117,20 +117,20 @@ class RangedWeapon(Weapon):
 
       def use( self, direction):# erzeugt kugel an spielerposition
           """ctreate projectil at appleposition"""
-          velocity = (direction [0]* self.projectile_speed,
-                      direction [1]* self.projectile_speed)
+          velocity = (direction [0]* self.projectile_speed,#Berechnung der Geschwindikeit x 
+                      direction [1]* self.projectile_speed)#Berechnung der Geschwindikeit y
           self.projectiles.append({
-               "pos": list(self.apple_position) ,
-               "vel": velocity
+               "pos": list(self.apple_position) , #startposition
+               "vel": velocity #Geschwindikeit in x und y Richtung
           })          
       def update(self,enemies):# bewegung der kugel
           """Update bulletmovment and check collisions"""
           for p in self.projectiles:
-               p["pos"][0] += p["vel"][0]
-               p["pos"][1] += p["vel"][1]
+               p["pos"][0] += p["vel"][0] # verschoben in x richtung
+               p["pos"][1] += p["vel"][1] # verschoben in y Richtung
 
                for enemy in enemies:
-                    if enemy.hitbox.collidepoint(int(p["pos"][0]), int(p["pos"][1])):
+                    if enemy.hitbox.collidepoint(int(p["pos"][0]), int(p["pos"][1])): # prüft ob punkt hitbox überschneidet
                          enemy.take_damage(self.damage)
                          self.projectiles.remove(p)
                          break             
@@ -138,11 +138,11 @@ class RangedWeapon(Weapon):
       def draw(self, window):
           """Draw all Bullets"""
           for p in self.projectiles:
-               pygame.draw.circle(
+               pygame.draw.circle( 
                     window,
                     (0, 0, 255),
-                    (int(p["pos"][0]), int(p["pos"][1])),
-                    5  # feste Größe
+                    (int(p["pos"][0]), int(p["pos"][1])),#position
+                    5  # Radius
                )                   
 class Bugspray(RangedWeapon):
      """Class for the  functions of Bugspray."""
