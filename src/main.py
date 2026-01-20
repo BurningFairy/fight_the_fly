@@ -19,8 +19,6 @@ apple_image = resource_path("assets/char_apple/Apple_back_cropped.png")
 # creates an Object from the "Apple" Class
 apple = Apple(apple_image,400, 400)
 
-timerStart = None
-
 def enemy_create(x, y):
     """Create a new enemy at the given position. """
     fly_image=resource_path("assets/char_fly/Fly.png")
@@ -75,7 +73,8 @@ def main():
     """Define the main game loop."""
     clock = pygame.time.Clock()
     run = True
-
+    timerStart = None
+    
     gameState = "MENU"
 
     while run:
@@ -88,7 +87,6 @@ def main():
 
         if gameState == "MENU":
             timerStart = None
-            screens.startMenu.draw_startMenu(events)
             gameState = screens.startMenu.draw_startMenu(events)
 
         elif gameState == "GAME":
@@ -105,7 +103,6 @@ def main():
             run = False
         
         elif gameState == "SETTINGS":
-            screens.settingsWindow.draw_settingsmenu(events)
             gameState = screens.settingsWindow.draw_settingsmenu(events)
 
 
