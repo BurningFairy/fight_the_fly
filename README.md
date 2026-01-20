@@ -29,6 +29,8 @@ Requirements:
 
 Python 3.9 (Download from https://www.python.org)
 Pygame (pip install pygame)
+OS: Windows 11
+(If you use Linux as your OS, you need Wine.)
 
 Instructions:
 
